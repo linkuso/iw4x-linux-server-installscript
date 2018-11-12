@@ -67,14 +67,17 @@ EOF
 echo "### Generating Startscript ###"
 cat > /home/"$username"/"$svalias".sh <<EOF
 #!/bin/bash
-wine /home/"$username"/servers/"$svalias"/MW2/iw4x.exe -dedicated -stdout +set net_port "$port" +exec server.cfg +set playlistFilename "playlists_default.info" +playlist 0
+wine /home/$username/servers/$svalias/MW2/iw4x.exe -dedicated -stdout +set net_port $port +exec server.cfg +set playlistFilename "playlists_default.info" +playlist 0
 EOF
+
+echo "### Making startscript executable ###"
+chmod +x /home/"$username"/"$svalias".sh
 
 echo "### Fixing ownership of serverfiles ###"
 chown -R "$username":users /home/"$username"
 
-echo "### Deleting downloaded zip-files to save HDD-space ###"
-rm /home/"$username"/servers/"$svalias"/*.zip
+#echo "### Deleting downloaded zip-files to save HDD-space ###"
+#rm /home/"$username"/servers/"$svalias"/*.zip
 
 
 cd /home/"$username"/
