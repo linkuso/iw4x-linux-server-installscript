@@ -49,9 +49,11 @@ echo "### Downloading MW2 ###"
 wget -P /home/"$username"/servers/"$svalias" -i /home/"$username"/download_list.txt
 
 echo "### Extracting MW2 ###"
-unzip /home/"$username"/servers/"$svalias"/MW2.zip
-unzip -o /home/"$username"/servers/"$svalias"/iw4x_dlc.zip -d /home/"$username"/servers/"$svalias"/MW2/
-unzip -o /home/"$username"/servers/"$svalias"/iw4x_files.zip -d /home/"$username"/servers/"$svalias"/MW2/
+unzip /home/"$username"/servers/"$svalias"/MW2.zip -d /home/"$username"/servers/"$svalias"/
+echo "### Extracting MW2-DLC's ###"
+unzip -u /home/"$username"/servers/"$svalias"/iw4x_dlc.zip -d /home/"$username"/servers/"$svalias"/MW2/
+echo "### Extracting iw4x files ###"
+unzip -u /home/"$username"/servers/"$svalias"/iw4x_files.zip -d /home/"$username"/servers/"$svalias"/MW2/
 
 echo "### Generating server.cfg ###"
 cat > /home/"$username"/servers/"$svalias"/MW2/iw4x/server.cfg <<EOF
