@@ -79,5 +79,3 @@ rm /home/"$username"/servers/"$svalias"/*.zip
 
 cd /home/"$username"/
 su "$username"
-
-###END
