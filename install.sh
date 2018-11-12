@@ -46,14 +46,14 @@ EOF
 
 
 echo "### Downloading MW2 ###"
-wget -P /home/"$username"/servers/"$svalias" -i /home/"$username"/download_list.txt
+wget -P /home/"$username" -i /home/"$username"/download_list.txt
 
 echo "### Extracting MW2 ###"
-unzip /home/"$username"/servers/"$svalias"/MW2.zip -d /home/"$username"/servers/"$svalias"/
+unzip /home/"$username"/MW2.zip -d /home/"$username"/servers/"$svalias"/
 echo "### Extracting MW2-DLC's ###"
-unzip -u /home/"$username"/servers/"$svalias"/iw4x_dlc.zip -d /home/"$username"/servers/"$svalias"/MW2/
+unzip -u /home/"$username"/iw4x_dlc.zip -d /home/"$username"/servers/"$svalias"/MW2/
 echo "### Extracting iw4x files ###"
-unzip -u /home/"$username"/servers/"$svalias"/iw4x_files.zip -d /home/"$username"/servers/"$svalias"/MW2/
+unzip -u /home/"$username"/iw4x_files.zip -d /home/"$username"/servers/"$svalias"/MW2/
 
 echo "### Generating server.cfg ###"
 cat > /home/"$username"/servers/"$svalias"/MW2/iw4x/server.cfg <<EOF
@@ -78,8 +78,13 @@ chmod +x /home/"$username"/"$svalias".sh
 echo "### Fixing ownership of serverfiles ###"
 chown -R "$username":users /home/"$username"
 
-echo "### Deleting downloaded zip-files to save HDD-space ###"
-rm /home/"$username"/servers/"$svalias"/*.zip
+echo "### Do you wish to remove the downloaded zip-files? ###"
+read -p "### Yes or No [Yy/Nn] ###" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    rm rm /home/"$username"/servers/"$svalias"/*.zip
+fi
 
 echo "### Start server in a screen with command screen -RD $svalias ### "
 echo "### Then in the screen run ./$svalias ###"
