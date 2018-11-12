@@ -4,7 +4,7 @@
 echo "Install IW4x debian linux" 
 
 dpkg --add-architecture i386
-apt-get update && apt-get upgrade -y
+apt-get update -y
 apt-get install wine wine32 unzip git screen -y
 
 echo "### Specify username to install under - can be a new or existing user - DO NOT use root ###"
