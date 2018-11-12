@@ -37,16 +37,22 @@ fi
 echo "### Creating serverfolder '$svalias'"
 su "$username" -c "mkdir -p /home/'$username'/servers/'$svalias'"
 
-echo "### Adding urls to download_list.txt ###"
-cat > /home/"$username"/download_list.txt <<EOF
-http://downloads.warzone.gg/IW4M/MW2.zip
-http://downloads.warzone.gg/IW4M/iw4x_files.zip
-http://downloads.warzone.gg/IW4M/iw4x_dlc.zip
+if [[ -f /home/"$username"/MW2.zip ]]; then 
+    echo "### The install file exists already ###"
+else
+    echo "### Continuing ###"
+    echo "### Adding urls to download_list.txt ###"
+	cat > /home/"$username"/download_list.txt <<EOF
+	http://downloads.warzone.gg/IW4M/MW2.zip
+	http://downloads.warzone.gg/IW4M/iw4x_files.zip
+	http://downloads.warzone.gg/IW4M/iw4x_dlc.zip
 EOF
 
 
 echo "### Downloading MW2 ###"
 wget -P /home/"$username" -i /home/"$username"/download_list.txt
+fi
+
 
 echo "### Extracting MW2 ###"
 unzip /home/"$username"/MW2.zip -d /home/"$username"/servers/"$svalias"/
@@ -83,12 +89,17 @@ read -p "### Yes or No [Yy/Nn] ###" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    rm rm /home/"$username"/servers/"$svalias"/*.zip
+	echo "### Deleting downloaded zip-files ###"
+    rm /home/"$username"/MW2.zip
+    rm /home/"$username"/iw4x_files.zip
+    rm /home/"$username"/iw4x_dlc.zip
 fi
 
-echo "### Start server in a screen with command screen -RD $svalias ### "
+echo "### Before anything else run  ###"
+exho "###     script /dev/null      ###"
+echo "### Start server in a screen with command ### "
+echo "###     screen -RD $svalias   ###"
 echo "### Then in the screen run ./$svalias ###"
 
 cd /home/"$username"/
 su "$username"
-script /dev/null
