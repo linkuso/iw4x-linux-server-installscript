@@ -78,9 +78,12 @@ chmod +x /home/"$username"/"$svalias".sh
 echo "### Fixing ownership of serverfiles ###"
 chown -R "$username":users /home/"$username"
 
-#echo "### Deleting downloaded zip-files to save HDD-space ###"
-#rm /home/"$username"/servers/"$svalias"/*.zip
+echo "### Deleting downloaded zip-files to save HDD-space ###"
+rm /home/"$username"/servers/"$svalias"/*.zip
 
+echo "### Start server in a screen with command screen -RD $svalias ### "
+echo "### Then in the screen run ./$svalias ###"
 
 cd /home/"$username"/
 su "$username"
+script /dev/null
