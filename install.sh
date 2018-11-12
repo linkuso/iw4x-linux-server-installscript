@@ -15,7 +15,7 @@ echo "### Specify server hostname (Visable in the serverbrowser) ###"
 read svhostname
 #echo "### Specify server ip ###"
 #read ip
-echo "### Specify server port default is 28960 ###"
+echo "### Specify server port default is 28960 (You must Specify a port) ###"
 read port
 echo "### Specify server alias - a name to refer to this server by - use different names for multiple servers ###"
 read svalias
@@ -96,7 +96,7 @@ then
 fi
 
 echo "### Before anything else run  ###"
-exho "###     script /dev/null      ###"
+echo "###     script /dev/null      ###"
 echo "### Start server in a screen with command ### "
 echo "###     screen -RD $svalias   ###"
 echo "### Then in the screen run ./$svalias ###"
