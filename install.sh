@@ -49,7 +49,7 @@ echo "### Creating serverfolder '$svalias'"
 su "$username" -c "mkdir -p /home/'$username'/servers/'$svalias'"
 
 if [[ -f /home/"$username"/MW2.zip ]]; then 
-    echo "### The install file exists already ###"
+    echo "### The install files exists already ###"
 else
     echo "### Continuing ###"
     echo "### Adding urls to download_list.txt ###"
@@ -105,8 +105,8 @@ source /home/"$username"/.bash_aliases
 echo "### Creating afterinstall script ###"
 cat > /home/"$username"/afterinstall.sh <<EOF
 #!/bin/bash
-mono /usr/local/bin/nuget.exe install SQLitePCLRaw.lib.e_sqlite3.linux -Version 1.1.11 -OutputDirectory /home/iw4x/iw4madmin
-chmod -R 770 /home/$username/iw4madmin
+mono /usr/local/bin/nuget.exe install SQLitePCLRaw.lib.e_sqlite3.linux -Version 1.1.11 -OutputDirectory /home/$username/iw4madmin
+chmod -R 770 /home/$username/iw4madmin/Lib/runtimes
 script /dev/null
 EOF
 
@@ -115,6 +115,7 @@ EOF
 
 
 echo "### Fixing ownership of serverfiles ###"
+chmod +x /"$username"/afterinstall.sh
 chown -R "$username":users /home/"$username"
 
 echo "### Do you wish to remove the downloaded zip-files? ###"
@@ -130,6 +131,9 @@ fi
 
 
 echo "### Before anything else run  ###"
+echo "================================="
+echo "###     ./afterinstall.sh     ###"
+echo "================================="
 echo "### Start server in a screen with command ### "
 echo "###     screen -RD $svalias   ###"
 echo "### Then in the screen run ./$svalias ###"
