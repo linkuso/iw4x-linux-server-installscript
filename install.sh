@@ -75,7 +75,7 @@ EOF
 echo "### Generating Startscript ###"
 cat > /home/"$username"/"$svalias".sh <<EOF
 #!/bin/bash
-wine /home/$username/servers/$svalias/MW2/iw4x.exe -dedicated -stdout +set net_port $port +exec server.cfg +set playlistFilename "playlists_default.info" +playlist 0
+wine /home/$username/servers/$svalias/MW2/iw4x.exe -dedicated -stdout +set net_port $port +exec server.cfg +party_enable 0 +sv_maxclients 20 +map_rotate
 EOF
 
 echo "### Making startscript executable ###"
