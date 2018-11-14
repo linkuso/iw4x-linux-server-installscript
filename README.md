@@ -1,5 +1,5 @@
 # iw4x-linux-server-installscript
-Script to install IW4x and wine on a Linux server
+Script to install IW4x + IW4M-Admin and wine on a Debian 9 Linux server
 
 Make the install.sh executable as root by running " chmod +x install.sh "
 
